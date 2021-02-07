@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="CheckStyle-IDEA">
+    <option name="configuration">
+      <map>
+        <entry key="checkstyle-version" value="8.10" />
+        <entry key="copy-libs" value="true" />
+        <entry key="location-0" value="BUNDLED:(bundled):Sun Checks" />
+        <entry key="location-1" value="BUNDLED:(bundled):Google Checks" />
+        <entry key="scan-before-checkin" value="false" />
+        <entry key="scanscope" value="JavaOnly" />
+        <entry key="suppress-errors" value="false" />
+      </map>
+    </option>
+  </component>
+  <component name="CheckStyle-IDEA-workspace">
+    <option name="configuration">
+      <map>
+        <entry key="last-active-plugin-version" value="5.19.0" />
+      </map>
+    </option>
+  </component>
+  <component name="JUnitGeneratorProjectSettings">
+    <option name="generateForOverloadedMethods" value="false" />
+    <option name="outputFilePattern" value="${SOURCEPATH}/../../test/java/${PACKAGE}/${FILENAME}" />
+    <option name="selectedTemplateKey" value="JUnit 4" />
+    <option name="vmTemplates">
+      <map>
+        <entry key="JUnit 3" value="######################################################################################## &#10;## &#10;## Available variables: &#10;##         $entryList.methodList - List of method composites &#10;##         $entryList.privateMethodList - List of private method composites &#10;##         $entryList.fieldList - ArrayList of class scope field names &#10;##         $entryList.className - class name &#10;##         $entryList.packageName - package name &#10;##         $today - Todays date in MM/dd/yyyy format &#10;## &#10;##            MethodComposite variables: &#10;##                $method.name - Method Name &#10;##                $method.signature - Full method signature in String form &#10;##                $method.reflectionCode - list of strings representing commented out reflection code to access method (Private Methods) &#10;##                $method.paramNames - List of Strings representing the method's parameters' names &#10;##                $method.paramClasses - List of Strings representing the method's parameters' classes &#10;## &#10;## You can configure the output class name using &quot;testClass&quot; variable below. &#10;## Here are some examples: &#10;## Test${entry.ClassName} - will produce TestSomeClass &#10;## ${entry.className}Test - will produce SomeClassTest &#10;## &#10;######################################################################################## &#10;## &#10;#macro (cap $strIn)$strIn.valueOf($strIn.charAt(0)).toUpperCase()$strIn.substring(1)#end &#10;## Iterate through the list and generate testcase for every entry. &#10;#foreach ($entry in $entryList) &#10;#set( $testClass=&quot;${entry.className}Test&quot;) &#10;## &#10;package test.$entry.packageName; &#10;&#10;import junit.framework.Test; &#10;import junit.framework.TestSuite; &#10;import junit.framework.TestCase; &#10;&#10;/** &#10;* ${entry.className} Tester. &#10;* &#10;* @author &lt;Authors name&gt; &#10;* @since &lt;pre&gt;$today&lt;/pre&gt; &#10;* @version 1.0 &#10;*/ &#10;public class $testClass extends TestCase { &#10;public $testClass(String name) { &#10;super(name); &#10;} &#10;&#10;public void setUp() throws Exception { &#10;super.setUp(); &#10;} &#10;&#10;public void tearDown() throws Exception { &#10;super.tearDown(); &#10;} &#10;&#10;#foreach($method in $entry.methodList) &#10;/** &#10;* &#10;* Method: $method.signature &#10;* &#10;*/ &#10;public void test#cap(${method.name})() throws Exception { &#10;//TODO: Test goes here... &#10;} &#10;&#10;#end &#10;&#10;#foreach($method in $entry.privateMethodList) &#10;/** &#10;* &#10;* Method: $method.signature &#10;* &#10;*/ &#10;public void test#cap(${method.name})() throws Exception { &#10;//TODO: Test goes here... &#10;#foreach($string in $method.reflectionCode) &#10;$string &#10;#end &#10;} &#10;&#10;#end &#10;&#10;public static Test suite() { &#10;return new TestSuite(${testClass}.class); &#10;} &#10;} &#10;#end" />
+        <entry key="JUnit 4" value="######################################################################################## &#10;## &#10;## Available variables: &#10;##         $entryList.methodList - List of method composites &#10;##         $entryList.privateMethodList - List of private method composites &#10;##         $entryList.fieldList - ArrayList of class scope field names &#10;##         $entryList.className - class name &#10;##         $entryList.packageName - package name &#10;##         $today - Todays date in MM/dd/yyyy format &#10;## &#10;##            MethodComposite variables: &#10;##                $method.name - Method Name &#10;##                $method.signature - Full method signature in String form &#10;##                $method.reflectionCode - list of strings representing commented out reflection code to access method (Private Methods) &#10;##                $method.paramNames - List of Strings representing the method's parameters' names &#10;##                $method.paramClasses - List of Strings representing the method's parameters' classes &#10;## &#10;## You can configure the output class name using &quot;testClass&quot; variable below. &#10;## Here are some examples: &#10;## Test${entry.ClassName} - will produce TestSomeClass &#10;## ${entry.className}Test - will produce SomeClassTest &#10;## &#10;######################################################################################## &#10;## &#10;#macro (cap $strIn)$strIn.valueOf($strIn.charAt(0)).toUpperCase()$strIn.substring(1)#end &#10;#macro (low $strIn)$strIn.valueOf($strIn.charAt(0)).toLowerCase()$strIn.substring(1)#end &#10;## Iterate through the list and generate testcase for every entry. &#10;#foreach ($entry in $entryList) &#10;#set( $testClass=&quot;${entry.className}Test&quot;)&#10;#if($testClass.contains(&quot;Controller&quot;))&#10;#set( $entityName=$testClass.replace(&quot;ControllerTest&quot;,&quot;&quot;))&#10;#set( $modelPackageName=$entry.packageName.replace(&quot;controller&quot;,&quot;model&quot;))&#10;#set( $moduleName=$entry.packageName.replace(&quot;com.svw.ematrix.demo.&quot;, &quot;&quot;).replace(&quot;.controller&quot;, &quot;&quot;))&#10;&#10;#end&#10;## &#10;package $entry.packageName; &#10;&#10;import org.junit.Test; &#10;import org.junit.Before; &#10;import org.junit.After; &#10;import org.junit.runner.RunWith;&#10;import org.springframework.beans.factory.annotation.Autowired;&#10;import org.springframework.test.annotation.Rollback;&#10;import org.springframework.boot.test.context.SpringBootTest;&#10;import org.springframework.transaction.annotation.Transactional;&#10;import org.springframework.test.context.junit4.SpringRunner;&#10;#if($testClass.contains(&quot;Controller&quot;))&#10;import $modelPackageName.$entityName;&#10;import org.hamcrest.core.Is;&#10;import org.junit.Assert;&#10;import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;&#10;import org.springframework.http.MediaType;&#10;import org.springframework.mock.web.MockMultipartFile;&#10;import org.springframework.test.web.servlet.MockMvc;&#10;import org.springframework.test.web.servlet.RequestBuilder;&#10;import org.springframework.test.web.servlet.ResultActions;&#10;import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;&#10;import org.springframework.test.web.servlet.result.MockMvcResultHandlers;&#10;import org.springframework.test.web.servlet.result.MockMvcResultMatchers;&#10;import org.springframework.test.web.servlet.setup.MockMvcBuilders;&#10;&#10;import com.alibaba.fastjson.JSON;&#10;#end&#10;/**&#10; * &lt;p&gt;&#10; * ClassName: ${entry.className}Test&#10; * &lt;/p&gt;&#10; * &lt;p&gt;&#10; * Description: &#10; * &lt;/p&gt;&#10; * &lt;p&gt;&#10; * Author: &lt;Authors name&gt; &#10; * &lt;/p&gt;&#10; * &lt;p&gt;&#10; * Date: $today&#10; * &lt;/p&gt;&#10; */&#10;@RunWith(SpringRunner.class)&#10;@SpringBootTest&#10;#if($testClass.contains(&quot;Controller&quot;))&#10;@AutoConfigureMockMvc&#10;#end&#10;@Transactional&#10;@Rollback&#10;public class $testClass { &#10;    &#10;    #if($testClass.contains(&quot;Controller&quot;))&#10;    /**&#10;     * &lt;p&gt;&#10;     * Description: mvc&#10;     * &lt;/p&gt;&#10;     */&#10;    @Autowired&#10;    private MockMvc mockMvc;&#10;    #end&#10;&#10;    @Autowired&#10;    private ${entry.className} #low(${entry.className});&#10;     &#10;    &#10;    @Before&#10;    public void before() throws Exception { &#10;    #if($testClass.contains(&quot;Controller&quot;))&#10;&#9;this.mockMvc = MockMvcBuilders.standaloneSetup(this.#low(${entry.className})).build();&#10;&#9;#end&#10;    } &#10;&#10;    @After&#10;    public void after() throws Exception { &#10;    } &#10;&#10;    #foreach($method in $entry.methodList)  &#10;    /**&#10;     *&#10;     * &lt;p&gt;&#10;     * Description: $method.signature &#10;     * &lt;/p&gt;&#10;     *&#10;     */&#10;     #if($testClass.contains(&quot;Controller&quot;))&#10;&#9;    #if($method.name.contains(&quot;page&quot;))&#10;&#9;    @Test&#10;&#9;    public void testPage() throws Exception {&#10;&#10;&#9;&#9;RequestBuilder requestBuilder = MockMvcRequestBuilders.get(&quot;/$moduleName/#low($entityName)/page&quot;)&#10;&#9;&#9;&#9;.contentType(MediaType.APPLICATION_JSON_UTF8).accept(MediaType.APPLICATION_JSON_UTF8);&#10;&#10;&#9;&#9;ResultActions resultActions = this.mockMvc.perform(requestBuilder);&#10;&#10;&#9;&#9;resultActions.andExpect(MockMvcResultMatchers.status().isOk()).andDo(MockMvcResultHandlers.print()).andReturn();&#10;&#9;    }&#10;&#9;    #elseif($method.name.contains(&quot;insert&quot;))&#10;&#9;    @Test&#10;&#9;    public void testInsert() throws Exception {&#10;&#10;&#9;&#9;$entityName #low($entityName)= new $entityName();&#10;&#9;&#9;&#10;&#10;&#9;&#9;RequestBuilder requestBuilder = MockMvcRequestBuilders.post(&quot;/$moduleName/#low($entityName)&quot;)&#10;&#9;&#9;&#9;.contentType(MediaType.APPLICATION_JSON_UTF8).accept(MediaType.APPLICATION_JSON_UTF8)&#10;&#9;&#9;&#9;.content(JSON.toJSONBytes(#low($entityName)));&#10;&#10;&#9;&#9;ResultActions resultActions = this.mockMvc.perform(requestBuilder);&#10;&#10;&#9;&#9;resultActions.andExpect(MockMvcResultMatchers.status().isOk()).andDo(MockMvcResultHandlers.print()).andReturn();&#10;&#10;&#9;&#9;Assert.assertThat(resultActions.andReturn().getResponse().getStatus(), Is.is(200));&#10;&#10;&#9;    }&#10;&#9;    #elseif($method.name.contains(&quot;update&quot;))&#10;&#9;    public void testUpdate() throws Exception {&#10;&#10;&#9;&#9;$entityName #low($entityName)= new $entityName();&#10;&#9;&#9;RequestBuilder requestBuilder = MockMvcRequestBuilders.put(&quot;/$moduleName/#low($entityName)&quot;)&#10;&#9;&#9;&#9;&#9;&#9;&#9;&#9;.contentType(MediaType.APPLICATION_JSON_UTF8)&#10;&#9;&#9;&#9;&#9;&#9;&#9;&#9;.accept(MediaType.APPLICATION_JSON_UTF8)&#10;&#9;&#9;&#9;&#9;&#9;&#9;&#9;.content(JSON.toJSONBytes(#low($entityName)));&#10;&#10;&#9;&#9;ResultActions resultActions = this.mockMvc.perform(requestBuilder);&#10;&#10;&#9;&#9;resultActions.andExpect(MockMvcResultMatchers.status().isOk()).andDo(MockMvcResultHandlers.print()).andReturn();&#10;&#10;&#9;    }&#10;&#9;    #elseif($method.name.equals(&quot;delete&quot;))&#10;&#9;    public void testDelete() throws Exception {&#10;&#10;&#9;&#9;RequestBuilder requestBuilder = MockMvcRequestBuilders.delete(&quot;/$moduleName/#low($entityName)/1&quot;)&#10;&#9;&#9;&#9;.contentType(MediaType.APPLICATION_JSON_UTF8).accept(MediaType.APPLICATION_JSON_UTF8);&#10;&#9;&#9;ResultActions resultActions = this.mockMvc.perform(requestBuilder);&#10;&#9;&#9;resultActions.andExpect(MockMvcResultMatchers.status().isOk()).andDo(MockMvcResultHandlers.print()).andReturn();&#10;&#10;&#9;    }&#10;&#9;    #elseif($method.name.contains(&quot;ById&quot;))&#10;&#9;    @Test&#10;&#9;    public void getById() throws Exception {&#10;&#10;&#9;&#9;RequestBuilder requestBuilder = MockMvcRequestBuilders.get(&quot;/$moduleName/#low($entityName)/1&quot;)&#10;&#9;&#9;&#9;.contentType(MediaType.APPLICATION_JSON_UTF8).accept(MediaType.APPLICATION_JSON_UTF8);&#10;&#10;&#9;&#9;ResultActions resultActions = this.mockMvc.perform(requestBuilder);&#10;&#9;&#9;resultActions.andExpect(MockMvcResultMatchers.status().isOk()).andDo(MockMvcResultHandlers.print()).andReturn();&#10;&#10;&#9;    }&#10;&#9;    #else&#10;&#9;    @Test&#10;&#9;    public void test#cap(${method.name})() throws Exception { &#10;&#9;    } &#10;&#9;    #end&#10;    #else&#10;    @Test&#10;    public void test#cap(${method.name})() throws Exception { &#10;    } &#10;    #end &#10;    #end &#10;&#10;    #foreach($method in $entry.privateMethodList) &#10;    /**&#10;     *&#10;     * &lt;p&gt;&#10;     * Description: $method.signature &#10;     * &lt;/p&gt;&#10;     *&#10;     */&#10;    @Test&#10;    public void test#cap(${method.name})() throws Exception { &#10;        #foreach($string in $method.reflectionCode) &#10;        $string &#10;        #end &#10;    } &#10;&#10;    #end &#10;} &#10;#end" />
+      </map>
+    </option>
+  </component>
+  <component name="JavaScriptSettings">
+    <option name="languageLevel" value="ES6" />
+  </component>
+  <component name="Kotlin2JvmCompilerArguments">
+    <option name="jvmTarget" value="1.8" />
+  </component>
+  <component name="ProjectInspectionProfilesVisibleTreeState">
+    <entry key="Project Default">
+      <profile-state>
+        <expanded-state>
+          <State>
+            <id />
+          </State>
+          <State>
+            <id>Ali-Check</id>
+          </State>
+          <State>
+            <id>Class structureJava</id>
+          </State>
+          <State>
+            <id>Code maturity issuesJava</id>
+          </State>
+          <State>
+            <id>Code style issuesJava</id>
+          </State>
+          <State>
+            <id>Google Web Toolkit issues</id>
+          </State>
+          <State>
+            <id>JUnit issuesJava</id>
+          </State>
+          <State>
+            <id>Java</id>
+          </State>
+          <State>
+            <id>Java 5Java language level migration aidsJava</id>
+          </State>
+          <State>
+            <id>Java 7Java language level migration aidsJava</id>
+          </State>
+          <State>
+            <id>Java 8Java language level migration aidsJava</id>
+          </State>
+          <State>
+            <id>Java language level migration aidsJava</id>
+          </State>
+          <State>
+            <id>Javadoc issuesJava</id>
+          </State>
+          <State>
+            <id>Performance issuesJava</id>
+          </State>
+          <State>
+            <id>Portability issuesJava</id>
+          </State>
+          <State>
+            <id>Probable bugsJava</id>
+          </State>
+          <State>
+            <id>Resource management issuesJava</id>
+          </State>
+          <State>
+            <id>Spring</id>
+          </State>
+          <State>
+            <id>Spring AOPSpring</id>
+          </State>
+          <State>
+            <id>TestNGJava</id>
+          </State>
+          <State>
+            <id>Threading issuesJava</id>
+          </State>
+        </expanded-state>
+      </profile-state>
+    </entry>
+  </component>
+  <component name="ProjectRootManager" version="2" languageLevel="JDK_1_8" project-jdk-name="1.8" project-jdk-type="JavaSDK" />
+</project>
